@@ -1,8 +1,6 @@
 
 object Translator {
-
     /**
-     *
      * 定义基本的数据结构
      * 定义简单的函数，将文本转换为scala内部数据结构表示
      * 为求值做好准备。
@@ -25,6 +23,7 @@ object Translator {
         * 是否是分隔符号
         */
         private def isDelimiter(ch: Char) = ch <= ' ' || ch == '(' || ch == ')' // ' ' 在ascii中为32，小于这个数值的char都认为是分隔符。
+        
         def hasNext: Boolean = {
             while (i < s.length() && s.charAt(i) <= ' ') { i = i + 1}
             i < s.length()

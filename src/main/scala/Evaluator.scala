@@ -35,11 +35,11 @@ object Evaluator {
     
     object Environment {
     
-        val emptyEnvironment = new Environment {
+        val empty = new Environment {
             def lookup(n: String): Data = throw EvaluatorException("undefined: " + n)
         }
     
-        def apply() = emptyEnvironment
+        def apply() = empty
     }
     
     val globalEnv = Environment()
@@ -64,6 +64,18 @@ object Evaluator {
             case List(Nil) => 1
             case _ => 0
         })
+    
+    /**
+    .extend("<", Lambda {
+            case List(arg1, arg2) => if (arg1.compareTo(arg2) < 0) 1 else 0
+        }).extend(">", Lambda {
+            case List(arg1, arg2) => if (arg1 > arg2) 1 else 0
+        }).extend("<=", Lambda {
+            case List(arg1, arg2) => if (arg1 <= arg2) 1 else 0
+        }).extend(">=", Lambda {
+            case List(arg1, arg2) => if (arg1 >= arg2) 1 else 0
+        })
+    */
 
     private case class Lambda(f: List[Data] => Data)
     

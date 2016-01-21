@@ -5,15 +5,15 @@ object TranTest extends App {
     
     import Tokenizer._
 
-    println("Interpreter test")
-
-
-    def factDef =
-        """def factorial (lambda (n)
-             (if (= n 0)
-                 1
-                 (* n (factorial (- n 1)))))
-        """
-    val code = "(" + factDef + "(factorial 4))"
-    println("result: " + evaluate(code))
+    println("scheme-- REPL version 0.1.1")
+    val replEnv = globalEnv
+    
+    var line = readLine(">>")
+    
+    while(line != "q") {
+        val list = string2list(line)
+        val v = eval(list, globalEnv)
+        println(s": $v")
+        line = readLine(">>")
+    }
 }
